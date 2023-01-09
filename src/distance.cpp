@@ -1,4 +1,4 @@
-#include <Arduino.h>
+#include "distance.h"
 
 
 float MeasureDistance(int trigPin, int echoPin)
