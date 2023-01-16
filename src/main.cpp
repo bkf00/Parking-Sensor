@@ -46,6 +46,7 @@ void setup()
   pinMode(enB, OUTPUT);
   analogWrite(enA, 200);
   analogWrite(enB, 200);
+  //setup_timer_3();
   distanceToMeasure = "Front";
 }
 
