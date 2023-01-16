@@ -96,6 +96,7 @@ void loop()
     GenerateTone(state);
     if(state == 3)
     {
+        delay(4000);
         if(distanceToMeasure == "Front")
             distanceToMeasure = "Back";
             else
