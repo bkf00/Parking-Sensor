@@ -16,6 +16,8 @@ int state; // 0 = distance bigger than 2m , 1 = far distance , 2 = medium distan
 #define enA              12
 #define enB              13
 
+
+
 #define SONAR_NUM 2      // Number of sensors.
 #define MAX_DISTANCE 300 // Maximum distance (in cm) to ping.
 
@@ -44,8 +46,8 @@ void setup()
   pinMode(in4, OUTPUT);
   pinMode(enA, OUTPUT);
   pinMode(enB, OUTPUT);
-  analogWrite(enA, 200);
-  analogWrite(enB, 200);
+  analogWrite(enA, 0);
+  analogWrite(enB, 0);
   //setup_timer_3();
   distanceToMeasure = "Front";
 }
@@ -74,12 +76,16 @@ void loop()
         digitalWrite(in3, HIGH);
         digitalWrite(in4, LOW);
     }
-    if(distance <= 200 && distance >=100)
+    if(distance <= 80 && distance >=40)
     {
+        analogWrite(enA, 190);
+        analogWrite(enB, 190);
         state=1;
     }
-    else if(distance <= 100 && distance >=15)
+    else if(distance <= 40 && distance >=15)
     {
+        analogWrite(enA, 160);
+        analogWrite(enB, 160);
         state=2;
     }
     else if(distance <= 15 && distance >=1)
@@ -92,12 +98,16 @@ void loop()
     }
     else
     {
+        analogWrite(enA, 220);
+        analogWrite(enB, 220);
         state=0;
     }
-    GenerateTone(state);
+    // GenerateTone(state);
+    
+LEDIndicators(state);
     if(state == 3)
     {
-        delay(4000);
+        delay(3000);
         if(distanceToMeasure == "Front")
             distanceToMeasure = "Back";
             else
